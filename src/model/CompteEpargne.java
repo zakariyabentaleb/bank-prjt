@@ -6,7 +6,7 @@ public class CompteEpargne extends Compte{
 
     private double tauxInteret ;
 
-    public CompteEpargne (int code, double soldeInitial , double tauxInteret) {
+    public CompteEpargne (String code, double soldeInitial , double tauxInteret) {
         super(code, soldeInitial);
         this.tauxInteret=tauxInteret;
     }

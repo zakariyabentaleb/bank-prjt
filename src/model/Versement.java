@@ -11,8 +11,7 @@ public class Versement extends Operation {
     public void afficherDetails() {
         System.out.println("Versement #" + numero.toString());
         System.out.println("Date : " + date.toString());
-        System.out.println("Montant : " + montant + " DH");
+        System.out.println("Montant : " + montant + "DH");
         System.out.println("Source : " + source);
     }
-
 }
