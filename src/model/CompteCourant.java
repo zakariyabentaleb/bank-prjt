@@ -13,7 +13,7 @@ public  class  CompteCourant extends  Compte {
     public void retirer(double montant) {
         if (solde + decouvert >= montant) {
             solde -= montant;
-            listeOperations.add("Retrait de " + montant + " DH");
+
         } else {
             System.out.println(" Solde insuffisant ");
         }
