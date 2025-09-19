@@ -72,7 +72,7 @@ public class CompteController {
                     }
 
                     Compte compteSelectionne = comptes.get(index);
-                    gererCompte(compteSelectionne, sc);
+                    gererCompte(compteSelectionne, sc,comptes);
                     break;
                 case 3:
                     // Nouvelle option : lister tous les comptes
@@ -101,7 +101,7 @@ public class CompteController {
     }
 
     // Méthode pour gérer un compte existant
-    private static void gererCompte(Compte compte, Scanner sc) {
+    private static void gererCompte(Compte compte, Scanner sc, ArrayList<Compte> comptes) {
         int choix;
         do {
             System.out.println("\n===== Menu du compte " + compte.getCode() + " =====");
@@ -110,6 +110,7 @@ public class CompteController {
             System.out.println("3. Faire un retrait");
             System.out.println("4. Calculer les intérêts (si épargne)");
             System.out.println("5. Voir l’historique des opérations");
+            System.out.println("6. Faire une Operation avec un autre Compte");
             System.out.println("0. Retour au menu principal");
             System.out.print("Votre choix : ");
             choix = sc.nextInt();
@@ -145,6 +146,53 @@ public class CompteController {
                         System.out.println("- " + op);
                     }
                     break;
+                case 6:
+                    System.out.println("=== Opérations ===");
+                    System.out.println("1. Versement");
+                    System.out.println("2. Retrait");
+                    System.out.print("Votre choix : ");
+                    int choixOp = sc.nextInt();
+
+                    // Choisir le compte par son code
+                    System.out.print("Entrer le code du compte : ");
+                    String codeCompte = sc.next();
+
+                    // Chercher le compte
+                    Compte compteSelectionne = null;
+                    for (Compte c : comptes) {
+                        if (c.getCode().equals(codeCompte)) {
+                            compteSelectionne = c;
+                            break;
+                        }
+                    }
+
+                    if (compteSelectionne == null) {
+                        System.out.println("Compte introuvable !");
+                        break;
+                    }
+
+                    // Saisir le montant
+                    System.out.print("Montant : ");
+                    double montant = sc.nextDouble();
+
+                    if (choixOp == 1) {
+                        // Versement
+                        compteSelectionne.setSolde(compteSelectionne.getSolde() + montant);
+                        System.out.println("Versement de " + montant + " effectué. Nouveau solde = " + compteSelectionne.getSolde());
+                    } else if (choixOp == 2) {
+                        // Retrait
+                        if (montant > compteSelectionne.getSolde()) {
+                            System.out.println("Solde insuffisant !");
+                        } else {
+                            compteSelectionne.setSolde(compteSelectionne.getSolde() - montant);
+                            System.out.println("Retrait de " + montant + " effectué. Nouveau solde = " + compteSelectionne.getSolde());
+                        }
+                    } else {
+                        System.out.println("Choix invalide !");
+                    }
+                    break;
+
+
                 case 0:
                     System.out.println("Retour au menu principal");
                     break;

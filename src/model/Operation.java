@@ -12,6 +12,19 @@ public abstract class Operation {
         this.date = LocalDateTime.now();
         this.montant = montant;
     }
+
+    public UUID getNumero() {
+        return numero;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
     public abstract void afficherDetails();
 }
 
