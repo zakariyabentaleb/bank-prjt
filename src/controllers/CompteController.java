@@ -137,7 +137,7 @@ public class CompteController {
                         double interet = ((CompteEpargne) compte).calculerInteret(compte.getSolde());
                         System.out.println("Intérêt calculé : " + interet + " DH");
                     } else {
-                        System.out.println("Ce compte ne génère pas d’intérêts !");
+                            System.out.println("Ce compte ne génère pas d’intérêts !");
                     }
                     break;
                 case 5:
@@ -147,16 +147,9 @@ public class CompteController {
                     }
                     break;
                 case 6:
-                    System.out.println("=== Opérations ===");
-                    System.out.println("1. Versement");
-                    System.out.println("2. Retrait");
-                    System.out.print("Votre choix : ");
-                    int choixOp = sc.nextInt();
-
-                    // Choisir le compte par son code
+                    System.out.println("=== Opérations Virement ===");
                     System.out.print("Entrer le code du compte : ");
                     String codeCompte = sc.next();
-
                     // Chercher le compte
                     Compte compteSelectionne = null;
                     for (Compte c : comptes) {
@@ -165,34 +158,18 @@ public class CompteController {
                             break;
                         }
                     }
-
                     if (compteSelectionne == null) {
                         System.out.println("Compte introuvable !");
                         break;
                     }
-
                     // Saisir le montant
                     System.out.print("Montant : ");
                     double montant = sc.nextDouble();
-
-                    if (choixOp == 1) {
                         // Versement
                         compteSelectionne.setSolde(compteSelectionne.getSolde() + montant);
+                        compte.setSolde(compte.getSolde()- montant);
                         System.out.println("Versement de " + montant + " effectué. Nouveau solde = " + compteSelectionne.getSolde());
-                    } else if (choixOp == 2) {
-                        // Retrait
-                        if (montant > compteSelectionne.getSolde()) {
-                            System.out.println("Solde insuffisant !");
-                        } else {
-                            compteSelectionne.setSolde(compteSelectionne.getSolde() - montant);
-                            System.out.println("Retrait de " + montant + " effectué. Nouveau solde = " + compteSelectionne.getSolde());
-                        }
-                    } else {
-                        System.out.println("Choix invalide !");
-                    }
                     break;
-
-
                 case 0:
                     System.out.println("Retour au menu principal");
                     break;

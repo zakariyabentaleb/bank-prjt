@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class CompteEpargne extends Compte{
 
     private double tauxInteret ;
@@ -12,7 +10,7 @@ public class CompteEpargne extends Compte{
     }
 
     @Override
-    public  void retirer(double montant){
+    public void retirer(double montant){
         if (solde >= montant){
             solde -= montant ;
         }
