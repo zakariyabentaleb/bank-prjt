@@ -127,11 +127,17 @@ public class CompteController {
                     System.out.println("Versement effectué !");
                     break;
                 case 3:
-                    System.out.print("Montant à retirer : ");
-                    double montantRetrait = sc.nextDouble();
-                    compte.retirer(montantRetrait);
-                    compte.getListeOperations().add("Retrait de " + montantRetrait + " DH");
+                    try {
+                        System.out.print("Montant à retirer : ");
+                        double montantRetrait = sc.nextDouble();
+                        compte.retirer(montantRetrait);
+                        compte.getListeOperations().add("Retrait de " + montantRetrait + " DH");
+                    } catch (Exception e) {
+                        System.out.println("⚠ Erreur : montant invalide !");
+                        sc.nextLine(); // vider le buffer
+                    }
                     break;
+
                 case 4:
                     if (compte instanceof CompteEpargne) {
                         double interet = ((CompteEpargne) compte).calculerInteret(compte.getSolde());
