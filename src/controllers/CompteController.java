@@ -135,7 +135,7 @@ public class CompteController {
                 case 4:
                     if (compte instanceof CompteEpargne) {
                         double interet = ((CompteEpargne) compte).calculerInteret(compte.getSolde());
-                        System.out.println("Intérêt calculé : " + interet + " DH");
+                        System.out.println("Intérêt calculé : " + interet + " %");
                     } else {
                             System.out.println("Ce compte ne génère pas d’intérêts !");
                     }
